@@ -36,9 +36,6 @@ pipeline {
         stage('IIS Configuration') {
             steps {
                 script {
-                    // Start the "To Do List" site
-                    bat 'C:\\Windows\\System32\\inetsrv\\appcmd start site /site.name:"To Do List"'
-
                     // Add a new site for "Rick and Morty 2"
                     bat 'C:\\Windows\\System32\\inetsrv\\appcmd add site /name:"Rick and Morty 3" /physicalPath:"C:\\inetpub\\wwwroot\\Rick-and-Morty-POC-Project-3" /bindings:http/*:86:'
                 }
