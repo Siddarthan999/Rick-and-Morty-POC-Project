@@ -37,7 +37,7 @@ pipeline {
             steps {
                 script {
                     def buildOutputPath = "${WORKSPACE}\\dist"
-                    def iisPath = "C:\\inetpub\\wwwroot\\Rick-and-Morty-POC-Project-3"
+                    def iisPath = "C:\\inetpub\\wwwroot\\Rick-and-Morty"
 
                     // Ensure build output exists
                     bat "if not exist \"${buildOutputPath}\" exit 1"
@@ -58,15 +58,15 @@ pipeline {
             steps {
                 script {
                     // Check if the site already exists
-                    def siteExists = bat(script: 'C:\\Windows\\System32\\inetsrv\\appcmd list site /name:"Rick and Morty 3"', returnStatus: true) == 0
+                    def siteExists = bat(script: 'C:\\Windows\\System32\\inetsrv\\appcmd list site /name:"Rick and Morty"', returnStatus: true) == 0
 
                     // If the site exists, delete it
                     if (siteExists) {
-                        bat 'C:\\Windows\\System32\\inetsrv\\appcmd delete site /site.name:"Rick and Morty 3"'
+                        bat 'C:\\Windows\\System32\\inetsrv\\appcmd delete site /site.name:"Rick and Morty"'
                     }
 
-                    // Add the new site for "Rick and Morty 3"
-                    bat 'C:\\Windows\\System32\\inetsrv\\appcmd add site /name:"Rick and Morty 3" /physicalPath:"C:\\inetpub\\wwwroot\\Rick-and-Morty-POC-Project-3" /bindings:http/*:86:'
+                    // Add the new site for "Rick and Morty"
+                    bat 'C:\\Windows\\System32\\inetsrv\\appcmd add site /name:"Rick and Morty" /physicalPath:"C:\\inetpub\\wwwroot\\Rick-and-Morty" /bindings:http/*:81:'
                 }
             }
         }
